@@ -1,0 +1,152 @@
+---
+title: "Anti-Covid Publication"
+author: "Hainan Xiong"
+date: "11/17/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+no_internvention = read.csv("no_internvention.csv")
+sapply(no_internvention,class)
+```
+```{r}
+population_axis = c(1:430)
+population_axis
+```
+
+```{r}
+ggplot() + geom_line(data = no_internvention,aes(x = no_internvention$Infected.Rate,y = no_internvention$Infected,color = "infected")) + geom_line(data = no_internvention,aes(x = no_internvention$Recovered.Rate,y = no_internvention$Recovered,color = "recovered"))+geom_line(data = no_internvention,aes(x = no_internvention$Death.Rate,y = no_internvention$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population")+ ylim(0,645) #+ xlim(0,640000) + ggtitle("No Internvention")
+```
+#after 20 epople detected
+```{r}
+maskon = read.csv("maskon.csv")
+```
+```{r}
+ggplot() + geom_line(data = maskon,aes(x = maskon$Infected.Rate,y = maskon$Infected,color = "infected")) + geom_line(data = maskon,aes(x = maskon$Recovered.Rate,y = maskon$Recovered,color = "recovered"))+geom_line(data = maskon,aes(x = maskon$Death.Rate,y = maskon$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population")+ ylim(0,430) + xlim(0,640000)+ggtitle("Put on mask after 20 cases detected")
+```
+#after 20 people detected
+```{r}
+stay_at_home = read.csv("stay_at_home.csv")
+
+```
+
+```{r}
+ggplot() + geom_line(data = stay_at_home,aes(x = stay_at_home$Infected.Rate,y = stay_at_home$Infected,color = "infected")) + geom_line(data = stay_at_home,aes(x = stay_at_home$Recovered.Rate,y = stay_at_home$Recovered,color = "recovered"))+geom_line(data = stay_at_home,aes(x = stay_at_home$Death.Rate,y = stay_at_home$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population")+ ylim(0,430) + xlim(0,640000)+ggtitle("Stay-at-home order after 20 cases detected")
+```
+
+```{r}
+Mask_SAH = read.csv("Mask&SAH.csv")
+```
+```{r}
+ggplot() + geom_line(data = Mask_SAH,aes(x = Mask_SAH$Infected.Rate,y = Mask_SAH$Infected,color = "infected")) + geom_line(data = Mask_SAH,aes(x = Mask_SAH$Recovered.Rate,y = Mask_SAH$Recovered,color = "recovered"))+geom_line(data = Mask_SAH,aes(x = Mask_SAH$Death.Rate,y = Mask_SAH$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population")+ ylim(0,430) + xlim(0,640000) + ggtitle("Stay-at-home and mask \n in effective after 20 cases detected")
+```
+## second pairs of experiments
+```{r}
+SAH_beginning = read.csv("SAH_beginning.csv")
+```
+
+```{r}
+ggplot() + geom_line(data = SAH_beginning,aes(x = SAH_beginning$Infected.Rate,y = SAH_beginning$Infected,color = "infected")) + geom_line(data = SAH_beginning,aes(x = SAH_beginning$Recovered.Rate,y = SAH_beginning$Recovered,color = "recovered"))+geom_line(data = SAH_beginning,aes(x = SAH_beginning$Death.Rate,y = SAH_beginning$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population")+ ylim(0,430) + xlim(0,640000) + ggtitle("Stay-at-home at the beginning of the pandemic")
+```
+# 50 people get infected
+```{r}
+SAH_middle = read_csv("SAH_middle.csv")
+sapply(SAH_middle,class)
+```
+```{r}
+ggplot() + geom_line(data = SAH_middle,aes(x = SAH_middle$`Infected Rate`,y = SAH_middle$Infected,color = "infected")) + geom_line(data = SAH_middle,aes(x = SAH_middle$`Recovered Rate`,y = SAH_middle$Recovered,color = "recovered"))+geom_line(data = SAH_middle,aes(x = SAH_middle$`Recovered Rate`,y = SAH_middle$`Death Rate`,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population")+ ylim(0,430) + xlim(0,640000)+ggtitle("Stay-at-home during the middle of pandemic")
+```
+ 
+```{r}
+maskon_beginning = read.csv("maskon_beginning.csv")
+```
+```{r}
+ggplot() + geom_line(data = maskon_beginning,aes(x = maskon_beginning$Infected.Rate,y = maskon_beginning$Infected,color = "infected")) + geom_line(data = maskon_beginning,aes(x = maskon_beginning$Recovered.Rate,y = maskon_beginning$Recovered,color = "recovered"))+geom_line(data = maskon_beginning,aes(x = maskon_beginning$Death.Rate,y = maskon_beginning$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population")+ ylim(0,430) + xlim(0,640000) + ggtitle("mask at the beginning of the pandemic")
+```
+```{r}
+maskon_middle = read.csv("maskon_middle.csv")
+```
+```{r}
+ggplot() + geom_line(data = maskon_middle,aes(x = maskon_middle$Infected.Rate,y = maskon_middle$Infected,color = "infected")) + geom_line(data = maskon_middle,aes(x = maskon_middle$Recovered.Rate,y = maskon_middle$Recovered,color = "recovered"))+geom_line(data = maskon_middle,aes(x = maskon_middle$Death.Rate,y = maskon_middle$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population")+ ylim(0,430) + xlim(0,640000)+ggtitle("mask in the middle of the pandemic")
+```
+```{r}
+double_beginning = read.csv("double_beginning.csv")
+```
+```{r}
+ggplot() + geom_line(data = double_beginning,aes(x = double_beginning$Infected.Rate,y = double_beginning$Infected,color = "infected")) + geom_line(data = double_beginning,aes(x = double_beginning$Recovered.Rate,y = double_beginning$Recovered,color = "recovered"))+geom_line(data = double_beginning,aes(x = double_beginning$Death.Rate,y = double_beginning$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population")+ ylim(0,430) + xlim(0,640000) + ggtitle("SAH and mask at the beginning of the pandemic")
+```
+
+```{r}
+double_middle = read.csv("double_middle.csv")
+```
+
+```{r}
+ggplot() + geom_line(data = double_middle,aes(x = double_middle$Infected.Rate,y = double_middle$Infected,color = "infected")) + geom_line(data = double_middle,aes(x = double_middle$Recovered.Rate,y = double_middle$Recovered,color = "recovered"))+geom_line(data = double_middle,aes(x = double_middle$Death.Rate,y = double_middle$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population")+ ylim(0,430) + xlim(0,640000) + ggtitle("SAH and mask in the middle of the pandemic")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+The first part of each two pairs uses a estimated basic reproduction number of 1.6, which is estimated from the United States by https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7438206/
+The second part of each two pairs uses a basic reproduction number of 2.7, which is derived and estimated from France by https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7438206/
+
+#basic reproductive number is 1.6
+```{r}
+#middle density community
+no_internvention = read.csv("no_internvention.csv")
+sapply(no_internvention,class)
+no_internvention_plot = ggplot() + geom_line(data = no_internvention,aes(x = no_internvention$Infected.Rate,y = no_internvention$Infected,color = "infected")) + geom_line(data = no_internvention,aes(x = no_internvention$Recovered.Rate,y = no_internvention$Recovered,color = "recovered"))+geom_line(data = no_internvention,aes(x = no_internvention$Death.Rate,y = no_internvention$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population")+ ylim(0,645) + xlim(0,1500000) + ggtitle("middle density R0 = 1.6")
+```
+#basic reproductive number is 2.7
+```{r}
+no_france_middle = read.csv("no_france_middle.csv")
+no_france_middle_plot = ggplot() + geom_line(data = no_france_middle,aes(x = no_france_middle$Infected.Rate,y = no_france_middle$Infected,color = "infected")) + geom_line(data = no_france_middle,aes(x = no_france_middle$Recovered.Rate,y = no_france_middle$Recovered,color = "recovered"))+geom_line(data = no_france_middle,aes(x = no_france_middle$Death.Rate,y = no_france_middle$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population") +ylim(0,645) + xlim(0,1500000) + ggtitle("middle density R0 = 2.7")
+```
+#basic reproductive number is 1.6 
+```{r}
+#small density community
+no_internvention_small = read.csv("no_internvention_small.csv")
+no_internvention_small_plot = ggplot() + geom_line(data = no_internvention_small,aes(x = no_internvention_small$Infected.Rate,y = no_internvention_small$Infected,color = "infected")) + geom_line(data = no_internvention_small,aes(x = no_internvention_small$Recovered.Rate,y = no_internvention_small$Recovered,color = "recovered"))+geom_line(data = no_internvention_small,aes(x = no_internvention_small$Death.Rate,y = no_internvention_small$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population") +ylim(0,645) + xlim(0,1500000)+ ggtitle("small density R0 = 1.6")
+```
+
+#basic reproductive number is 2.7
+```{r}
+no_france_small = read.csv("no_france_small.csv")
+no_france_small_plot = ggplot() + geom_line(data = no_france_small,aes(x = no_france_small$Infected.Rate,y = no_france_small$Infected,color = "infected")) + geom_line(data = no_france_small,aes(x = no_france_small$Recovered.Rate,y = no_france_small$Recovered,color = "recovered"))+geom_line(data = no_france_small,aes(x = no_france_small$Death.Rate,y = no_france_small$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population") +ylim(0,645) + xlim(0,1500000)+ ggtitle("small density R0 = 2.7")
+```
+
+#basic reproductive number is 1.6
+
+```{r}
+#large density
+no_internvention_large = read.csv("no_internvention_large.csv")
+no_internvention_large_plot = ggplot() + geom_line(data = no_internvention_large,aes(x = no_internvention_large$Infected.Rate,y = no_internvention_large$Infected,color = "infected")) + geom_line(data = no_internvention_large,aes(x = no_internvention_large$Recovered.Rate,y = no_internvention_large$Recovered,color = "recovered"))+geom_line(data = no_internvention_large,aes(x = no_internvention_large$Death.Rate,y = no_internvention_large$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population") +ylim(0,645) + xlim(0,1500000)+ ggtitle("large density R0 = 1,6")
+```
+#basic reproductive number is 2.7
+```{r}
+#large density
+no_france_large = read.csv("no_france_large.csv")
+no_france_large_plot = ggplot() + geom_line(data = no_france_large,aes(x = no_france_large$Infected.Rate,y = no_france_large$Infected,color = "infected")) + geom_line(data = no_france_large,aes(x = no_france_large$Recovered.Rate,y = no_france_large$Recovered,color = "recovered"))+geom_line(data = no_france_large,aes(x = no_france_large$Death.Rate,y = no_france_large$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population") +ylim(0,645) + xlim(0,1500000)+ ggtitle("large density R0 = 2.7")
+```
+#visualization
+```{r}
+require(gridExtra)
+summary = grid.arrange(no_france_large_plot,no_internvention_large_plot,no_france_middle_plot,no_internvention_plot,no_france_small_plot,no_internvention_small_plot,nrow = 3,top = "Transmission without Internvention Under Different R0 and Population Density")
+ggsave("Summary of Simulation under Different R0 and Density.pdf")
+```
+
+

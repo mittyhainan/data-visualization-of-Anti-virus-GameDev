@@ -1,0 +1,59 @@
+---
+title: "post-simulation analysis extra"
+author: "Hainan Xiong"
+date: "12/3/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+The first part of each two pairs uses a estimated basic reproduction number of 1.6, which is estimated from the United States by https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7438206/
+The second part of each two pairs uses a basic reproduction number of 2.7, which is derived and estimated from France by https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7438206/
+
+I set the number of each person can contact closely as 1 so in one day they will contact 24 people. Assume they follow a binomial distribution so R0 will be E(X) where X is the infected person. So E(X) = n*p where n = 24. So p = E(X)/n. So if R0 = 1.6 then p = 1.6/24 = .067; If R0 = 2.7 then p = 2.7/24 = .1125
+
+#basic reproductive number is 1.6
+```{r}
+#medium density community
+no_internvention = read.csv("no_internvention.csv")
+sapply(no_internvention,class)
+no_internvention_plot = ggplot() + geom_line(data = no_internvention,aes(x = no_internvention$Infected.Rate,y = no_internvention$Infected,color = "infected")) + geom_line(data = no_internvention,aes(x = no_internvention$Recovered.Rate,y = no_internvention$Recovered,color = "recovered"))+geom_line(data = no_internvention,aes(x = no_internvention$Death.Rate,y = no_internvention$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population")+ ylim(0,645) + xlim(0,1500000) + ggtitle("medium density R0 = 1.6")
+```
+#basic reproductive number is 2.7
+```{r}
+no_france_middle = read.csv("no_france_middle.csv")
+no_france_middle_plot = ggplot() + geom_line(data = no_france_middle,aes(x = no_france_middle$Infected.Rate,y = no_france_middle$Infected,color = "infected")) + geom_line(data = no_france_middle,aes(x = no_france_middle$Recovered.Rate,y = no_france_middle$Recovered,color = "recovered"))+geom_line(data = no_france_middle,aes(x = no_france_middle$Death.Rate,y = no_france_middle$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population") +ylim(0,645) + xlim(0,1500000) + ggtitle("medium density R0 = 2.7")
+```
+#basic reproductive number is 1.6 
+```{r}
+#low density community
+no_internvention_small = read.csv("no_internvention_small.csv")
+no_internvention_small_plot = ggplot() + geom_line(data = no_internvention_small,aes(x = no_internvention_small$Infected.Rate,y = no_internvention_small$Infected,color = "infected")) + geom_line(data = no_internvention_small,aes(x = no_internvention_small$Recovered.Rate,y = no_internvention_small$Recovered,color = "recovered"))+geom_line(data = no_internvention_small,aes(x = no_internvention_small$Death.Rate,y = no_internvention_small$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population") +ylim(0,645) + xlim(0,1500000)+ ggtitle("low density R0 = 1.6")
+```
+
+#basic reproductive number is 2.7
+```{r}
+no_france_small = read.csv("no_france_small.csv")
+no_france_small_plot = ggplot() + geom_line(data = no_france_small,aes(x = no_france_small$Infected.Rate,y = no_france_small$Infected,color = "infected")) + geom_line(data = no_france_small,aes(x = no_france_small$Recovered.Rate,y = no_france_small$Recovered,color = "recovered"))+geom_line(data = no_france_small,aes(x = no_france_small$Death.Rate,y = no_france_small$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population") +ylim(0,645) + xlim(0,1500000)+ ggtitle("low density R0 = 2.7")
+```
+
+#basic reproductive number is 1.6
+
+```{r}
+#high density
+no_internvention_large = read.csv("no_internvention_large.csv")
+no_internvention_large_plot = ggplot() + geom_line(data = no_internvention_large,aes(x = no_internvention_large$Infected.Rate,y = no_internvention_large$Infected,color = "infected")) + geom_line(data = no_internvention_large,aes(x = no_internvention_large$Recovered.Rate,y = no_internvention_large$Recovered,color = "recovered"))+geom_line(data = no_internvention_large,aes(x = no_internvention_large$Death.Rate,y = no_internvention_large$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population") +ylim(0,645) + xlim(0,1500000)+ ggtitle("high density R0 = 1,6")
+```
+#basic reproductive number is 2.7
+```{r}
+#high density
+no_france_large = read.csv("no_france_large.csv")
+no_france_large_plot = ggplot() + geom_line(data = no_france_large,aes(x = no_france_large$Infected.Rate,y = no_france_large$Infected,color = "infected")) + geom_line(data = no_france_large,aes(x = no_france_large$Recovered.Rate,y = no_france_large$Recovered,color = "recovered"))+geom_line(data = no_france_large,aes(x = no_france_large$Death.Rate,y = no_france_large$Death.Toll,color = "toll"))+scale_color_manual(name = "time",values = c("infected" = "LIGHTPINK ","recovered" = "skyblue","toll" = "BLACK")) + theme_bw() + labs(x = "Time Elapse",y = "Population") +ylim(0,645) + xlim(0,1500000)+ ggtitle("high density R0 = 2.7")
+```
+#visualization
+```{r}
+require(gridExtra)
+grid.arrange(no_france_large_plot,no_internvention_large_plot,no_france_middle_plot,no_internvention_plot,no_france_small_plot,no_internvention_small_plot,nrow = 3,top = "Transmission without Internvention Under Different R0s and Population Densities") 
+```
